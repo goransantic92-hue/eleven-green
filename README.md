@@ -1,7 +1,10 @@
-# TRON fast food
+# Eleven Green — concept redesign
 
 Static burger-bar sites with an interactive "build your own burger" hero: tap layers from a tray,
 watch them stack with real cut-out photos, track height and price on a receipt, then crown it.
+
+Live: https://eleven-green-concept.vercel.app/eleven-green/ (Eleven Green concept) ·
+https://eleven-green-concept.vercel.app/ (TRON builder)
 
 | path | what it is |
 | --- | --- |
