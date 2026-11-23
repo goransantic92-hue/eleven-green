@@ -1,14 +1,21 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "tron-fast-food.vercel.app" }],
+      "destination": "https://eleven-green-concept.vercel.app/",
+      "permanent": true
+    },
+    { "source": "/tron", "destination": "/", "permanent": false },
+    { "source": "/tron/:path*", "destination": "/", "permanent": false },
     { "source": "/eleven-green", "destination": "/", "permanent": true },
     { "source": "/eleven-green/", "destination": "/", "permanent": true },
-    { "source": "/eleven-green/:path*", "destination": "/:path*", "permanent": true },
-    { "source": "/tron", "destination": "/tron/", "permanent": true }
+    { "source": "/eleven-green/:path*", "destination": "/:path*", "permanent": true }
   ],
   "headers": [
     {
-      "source": "/((?!tron/).*)",
+      "source": "/(.*)",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     },
     {
