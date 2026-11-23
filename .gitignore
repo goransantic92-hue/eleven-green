@@ -1,0 +1,15 @@
+# Reference screenshots of the site we studied (not ours to publish)
+replica/
+
+# Original, unprocessed photos (stock licences do not allow sharing the raw files)
+assets/source/
+/*.webp
+/*.png
+/*.jpg
+
+# Local tooling
+.claude/
+.vercel/
+node_modules/
+.DS_Store
+Thumbs.db

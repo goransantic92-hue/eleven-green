@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Catering — Eleven Green</title>
+  <meta name="description" content="11G Catering: the Eleven Green burger truck for big events, or 11G at Home for private celebrations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+</head>
+<body>
+  <header id="site-header"></header>
+  <main>
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow"><span class="dot"></span>11G Catering</p>
+        <h1>Burgers <em>on the move.</em></h1>
+        <p class="lede">From festivals to backyards, we bring the same uncompromising quality wherever we go: our fully equipped burger truck for big events, or a compact pop-up for private celebrations at home.</p>
+        <div class="actions-row"><a class="btn btn-yellow" href="#book">Book your event</a></div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:30px">
+      <div class="wrap split reveal">
+        <article class="offer">
+          <p class="o-kick">For large events</p>
+          <h3>The <em>Truck</em></h3>
+          <p>Our fully equipped mobile kitchen delivers the complete Eleven Green experience wherever you are. Built to handle large crowds while serving fresh, hot burgers made to order, it becomes the centrepiece of the event.</p>
+          <ul class="ticks"><li>Full kitchen capabilities</li><li>Crowd-ready &amp; efficient</li><li>Signature Eleven Green quality</li></ul>
+        </article>
+        <article class="offer">
+          <p class="o-kick">For private celebrations</p>
+          <h3>11G <em>at Home</em></h3>
+          <p>A more compact version of the big truck. Our pop-up rolls into backyards, office buildings and private events with the same grills, the same energy and the same obsession with quality. Just easier to park.</p>
+          <ul class="ticks"><li>Compact, space-friendly setup</li><li>Smooth service for smaller groups</li><li>The full Eleven Green experience, downsized</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="book">
+      <div class="wrap">
+        <div class="paper form-card reveal">
+          <p class="m-kicker">EVENT BOOKING REQUEST</p>
+          <h2>Tell us about your <em style="color:var(--red)">event.</em></h2>
+          <p class="f-intro">Fill out the form and we’ll get back to you within 72 hours.</p>
+          <form class="js-local-form" data-done="Request received. We’ll get back to you within 72 hours.">
+            <div class="form-grid">
+              <label class="field">Full name *<input name="name" required autocomplete="name"></label>
+              <label class="field">Email address *<input type="email" name="email" required autocomplete="email"></label>
+              <label class="field">Phone number *<input type="tel" name="phone" required autocomplete="tel"></label>
+              <label class="field">Event date *<input type="date" name="event_date" required><small>Minimum 7 days advance booking required</small></label>
+              <label class="field">Catering service *
+                <select name="service" required><option value="">Choose your service</option><option>Burger Truck</option><option>11G At Home</option></select>
+              </label>
+              <label class="field">Event type *
+                <select name="event_type" required><option value="">Select event type</option><option>Corporate event</option><option>Entertainment event</option><option>Private celebration</option></select>
+              </label>
+              <label class="field">Number of guests *<input type="number" name="guests" min="1" required></label>
+              <label class="field">Estimated burgers<input type="number" name="burgers" min="0"><small>Helps us prepare accurate estimates</small></label>
+              <label class="field full">Event location *<input name="location" required></label>
+              <label class="field full">Additional details<textarea name="details"></textarea></label>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-red" type="submit">Submit booking request</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="js/data.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>

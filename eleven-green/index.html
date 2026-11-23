@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Eleven Green — the perfect burger, pressed with care</title>
+  <meta name="description" content="Eleven Green burger bistro: award-winning wagyu burgers in Dubai, Abu Dhabi, Sharjah, Ras Al Khaimah and Doha. Build yours and pre-order for pick-up." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/builder.css" />
+  <link rel="preload" as="image" href="assets/ingredients/bun-top.webp" />
+  <link rel="preload" as="image" href="assets/ingredients/bun-bottom.webp" />
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main>
+    <!-- ============ HERO: build your own ============ -->
+    <section class="hero-builder" aria-label="Build your burger">
+      <div class="builder">
+        <section class="intro">
+          <p class="kicker"><span class="dot"></span>BURGER BISTRO · UAE &amp; DOHA</p>
+          <h1>Press it <em>your</em> way.</h1>
+          <p class="lead">Pick your layers from the tray. We hand-press it, grill it and have it ready for pick-up in about 15 minutes.</p>
+          <div class="note" id="note" aria-live="polite">
+            <p class="note-title" id="noteTitle">HOW IT WORKS</p>
+            <p class="note-text" id="noteText">Tap a layer below to drop it on. Tap anything in the stack to pull it off.</p>
+          </div>
+        </section>
+
+        <section class="stage" id="stage" aria-label="Your burger">
+          <div class="halo" aria-hidden="true"></div>
+          <div class="ruler" aria-hidden="true"><span class="ruler-mark" id="rulerMark">0.0 cm</span></div>
+          <div class="stack" id="stack"></div>
+        </section>
+
+        <aside class="side">
+          <div class="receipt" id="receipt">
+            <p class="r-logo">ELEVEN <em>green</em></p>
+            <p class="r-meta" id="orderMeta">ORDER N° 011 · PICK-UP</p>
+            <ul class="r-lines" id="lines"></ul>
+            <div class="r-row r-height"><span>STACK HEIGHT</span><span id="heightVal">0.0 CM</span></div>
+            <div class="r-row r-total"><span>TOTAL</span><strong id="totalVal">AED 0</strong></div>
+          </div>
+          <label class="pickup">
+            <span>Pick-up at</span>
+            <select id="pickup" aria-label="Pick-up branch"></select>
+          </label>
+          <div class="actions">
+            <button class="btn btn-yellow" id="crownBtn" type="button">Crown it ↓</button>
+            <button class="btn btn-ghost" id="resetBtn" type="button">Start over</button>
+          </div>
+        </aside>
+
+        <section class="tray-wrap">
+          <div class="presets" id="presets" role="group" aria-label="Start from a menu burger"></div>
+          <div class="tray" id="tray" role="group" aria-label="Ingredients"></div>
+          <p class="hint">TAP TO ADD · TAP THE STACK TO REMOVE</p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ============ Full menu ============ -->
+    <section class="section" id="menu">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow"><span class="dot"></span>The menu · prices in AED</p>
+            <h2 class="h2">Every burger <em>we</em> make.</h2>
+          </div>
+          <a class="link-arrow" href="menu.html">Printable menu →</a>
+        </div>
+        <div class="reveal" data-render="menuHome"></div>
+      </div>
+    </section>
+
+    <!-- ============ Awards ============ -->
+    <section class="section tight" aria-label="Awards">
+      <div class="wrap">
+        <div class="awards reveal">
+          <div class="award"><p>Battle of the Burgers · 2022</p><h3>1st place <em>in the UAE</em></h3></div>
+          <div class="award"><p>World Food Championships · 2022</p><h3>3rd place <em>in Dallas</em></h3></div>
+          <div class="award"><p>Time Out Dubai · 2024</p><h3>Best <em>Burger Bar</em></h3></div>
+          <div class="award"><p>Time Out Dubai · 2025</p><h3>Best Burger, <em>highly commended</em></h3></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 11 keys ============ -->
+    <section class="section" id="keys">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow"><span class="dot"></span>Our philosophy</p>
+            <h2 class="h2">11 keys to the <em>perfect</em> burger.</h2>
+          </div>
+          <p class="lede">No freezers, no gimmicks. Beef ground fresh every day and pressed by hand, never smashed.</p>
+        </div>
+        <ol class="keys reveal" data-render="keys"></ol>
+      </div>
+    </section>
+
+    <!-- ============ Branches ============ -->
+    <section class="section" id="branches">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow"><span class="dot"></span>Pick a branch</p>
+            <h2 class="h2">Six grills, <em>one</em> standard.</h2>
+          </div>
+          <a class="link-arrow" href="branches.html">Hours &amp; directions →</a>
+        </div>
+        <div class="branches reveal" data-render="branches" data-full="1"></div>
+      </div>
+    </section>
+
+    <!-- ============ News ============ -->
+    <section class="section" id="news">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow"><span class="dot"></span>The latest from “Bull”</p>
+            <h2 class="h2">People are <em>talking.</em></h2>
+          </div>
+          <a class="link-arrow" href="news.html">All news →</a>
+        </div>
+        <div class="news-grid reveal" data-render="news"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <dialog class="modal" id="doneModal" aria-labelledby="doneTitle">
+    <p class="m-kicker" id="doneNo">ORDER N° 011</p>
+    <h2 id="doneTitle">It’s on the <em>grill.</em></h2>
+    <p class="m-text" id="doneText"></p>
+    <div class="m-actions">
+      <a class="btn btn-red" href="https://www.eleven-green.com/order" target="_blank" rel="noopener">Order online</a>
+      <button class="btn btn-ghost-dark" id="againBtn" type="button">Build another</button>
+    </div>
+  </dialog>
+
+  <script src="js/data.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/builder.js"></script>
+</body>
+</html>
