@@ -43,7 +43,7 @@ for (const g of [...Object.values(ING), ...Object.values(BUN_PARTS)]) {
 }
 BUN_PARTS.bunTop.base = BUN_PARTS.bunTop.b - 10;  // the crown sits on top, it does not swallow the last layer
 
-const IMG_DIR = 'assets/ingredients/';
+const IMG_DIR = '../assets/ingredients/';
 function art(key, cls = '') {
   const g = ING[key] || BUN_PARTS[key];
   if (g) return `<img class="${cls}" src="${IMG_DIR}${g.img}.webp" width="240" height="${g.h}" alt="" draggable="false" decoding="async">`;

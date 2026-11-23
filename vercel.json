@@ -1,8 +1,13 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/eleven-green", "destination": "/", "permanent": true },
+    { "source": "/eleven-green/:path*", "destination": "/:path*", "permanent": true },
+    { "source": "/tron", "destination": "/tron/", "permanent": true }
+  ],
   "headers": [
     {
-      "source": "/eleven-green/(.*)",
+      "source": "/((?!tron/).*)",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     },
     {

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TRON — burgers built by you</title>
+  <meta name="description" content="TRON burger bar. Pick your layers, we grill and stack it. Ready in about 12 minutes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preload" as="image" href="../assets/ingredients/bun-top.webp" />
+  <link rel="preload" as="image" href="../assets/ingredients/bun-bottom.webp" />
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <a class="logo" href="#" aria-label="TRON, home">TRON <em>fast food</em></a>
+      <button class="btn btn-red" id="tableBtn" type="button">Find a table</button>
+    </header>
+
+    <main class="builder">
+      <section class="intro">
+        <p class="kicker"><span class="dot"></span>BURGER BAR · OPEN 11 TO 11</p>
+        <h1>Pile it <em>your</em> way.</h1>
+        <p class="lead">Choose your layers from the tray. We grill it, stack it and hand it over in about 12 minutes.</p>
+        <div class="note" id="note" aria-live="polite">
+          <p class="note-title" id="noteTitle">HOW IT WORKS</p>
+          <p class="note-text" id="noteText">Tap a layer below to drop it on. Tap anything in the stack to pull it off.</p>
+        </div>
+      </section>
+
+      <section class="stage" id="stage" aria-label="Your burger">
+        <div class="halo" aria-hidden="true"></div>
+        <div class="ruler" aria-hidden="true">
+          <span class="ruler-mark" id="rulerMark">0.0 cm</span>
+        </div>
+        <div class="stack" id="stack"></div>
+      </section>
+
+      <aside class="side">
+        <div class="receipt" id="receipt">
+          <p class="r-logo">TRON <em>fast food</em></p>
+          <p class="r-meta" id="orderMeta">ORDER N° 042 · PICK-UP</p>
+          <ul class="r-lines" id="lines"></ul>
+          <div class="r-row r-height"><span>STACK HEIGHT</span><span id="heightVal">0.0 CM</span></div>
+          <div class="r-row r-total"><span>TOTAL</span><strong id="totalVal">$0.00</strong></div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-yellow" id="crownBtn" type="button">Crown it ↓</button>
+          <button class="btn btn-ghost" id="resetBtn" type="button">Start over</button>
+        </div>
+      </aside>
+
+      <section class="tray-wrap">
+        <div class="tray" id="tray" role="group" aria-label="Ingredients"></div>
+        <p class="hint">TAP TO ADD · TAP THE STACK TO REMOVE</p>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="modal" id="doneModal" aria-labelledby="doneTitle">
+    <p class="m-kicker" id="doneNo">ORDER N° 042</p>
+    <h2 id="doneTitle">It's on the <em>grill.</em></h2>
+    <p class="m-text" id="doneText"></p>
+    <div class="m-actions">
+      <button class="btn btn-red" id="againBtn" type="button">Build another</button>
+      <button class="btn btn-ghost-dark" id="closeBtn" type="button">Close</button>
+    </div>
+  </dialog>
+
+  <dialog class="modal" id="tableModal" aria-labelledby="tableTitle">
+    <form id="tableForm" method="dialog">
+      <p class="m-kicker">TRON · TABLES</p>
+      <h2 id="tableTitle">Find a <em>table.</em></h2>
+      <div class="fields">
+        <label>Name<input name="name" required autocomplete="given-name" /></label>
+        <label>Guests
+          <select name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select>
+        </label>
+        <label>Date<input type="date" name="date" required /></label>
+        <label>Time<input type="time" name="time" min="11:00" max="22:30" value="19:00" required /></label>
+      </div>
+      <div class="m-actions">
+        <button class="btn btn-red" type="submit" value="ok">Book it</button>
+        <button class="btn btn-ghost-dark" type="button" id="tableCancel">Cancel</button>
+      </div>
+    </form>
+    <div class="table-done" id="tableDone" hidden>
+      <p class="m-kicker">TRON · TABLES</p>
+      <h2>See you, <em id="tableName">friend.</em></h2>
+      <p class="m-text" id="tableText"></p>
+      <div class="m-actions"><button class="btn btn-red" type="button" id="tableOk">Done</button></div>
+    </div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
