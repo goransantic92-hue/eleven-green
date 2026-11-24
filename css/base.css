@@ -114,6 +114,30 @@ img { max-width: 100%; }
 .link-arrow { font: 500 13px/1 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--yellow); text-decoration: none; }
 .link-arrow:hover { text-decoration: underline; text-underline-offset: 4px; }
 
+/* light band (mint) — dark text and green accents instead of cream + yellow */
+.section-light {
+  --light-bg: #E6F3E6;
+  --light-ink: #142019;
+  --light-muted: #4f6457;
+  --light-line: rgba(20, 32, 25, 0.14);
+  --light-accent: #0b6446;
+  background: var(--light-bg); color: var(--light-ink);
+}
+/* one continuous band: no double gap, and cover the sub-pixel seam between the two sections */
+.section-light + .section-light { padding-top: 24px; box-shadow: 0 -2px 0 var(--light-bg); }
+.section-light .eyebrow { color: var(--light-muted); }
+.section-light .h2 em, .section-light .h3 em, .section-light .award h3 em { color: var(--light-accent); }
+.section-light .lede { color: #3a4c41; }
+.section-light .link-arrow { color: var(--light-accent); }
+.section-light .awards { border-color: var(--light-line); }
+.section-light .awards .award { border-color: var(--light-line); }  /* beats the responsive border rules */
+.section-light .award p { color: var(--light-muted); }
+.section-light .keys li { background: #fff; border-color: var(--light-line); box-shadow: 0 1px 0 rgba(20, 32, 25, 0.04); }
+.section-light .keys li:hover { background: #f6fbf5; }
+.section-light .k-no { color: var(--light-accent); }
+.section-light .keys li:last-child { background: var(--yellow); border-color: transparent; }
+.section-light .keys li:last-child .k-no { color: #2a1c00; }
+
 /* page hero (inner pages) */
 .page-hero { position: relative; padding: 96px 0 56px; overflow: hidden; }
 .page-hero::before {
@@ -342,8 +366,13 @@ img { max-width: 100%; }
 .f-cols a { text-decoration: none; color: var(--mint); font-weight: 500; }
 .f-cols a:hover { color: var(--yellow); }
 .f-word {
-  font-weight: 800; font-size: clamp(64px, 14.2vw, 220px); letter-spacing: -0.05em; line-height: 0.8;
-  color: transparent; -webkit-text-stroke: 1.5px rgba(220, 235, 220, 0.22); white-space: nowrap;
+  /* Outline wordmark. The variable font builds letters like "E" from overlapping parts, so a plain
+     text-stroke draws their inner seams. Paint the stroke first, then fill with the footer colour on
+     top: the fill hides the seams and only the outer outline stays (half of a 3px stroke = 1.5px). */
+  font-weight: 800; font-size: clamp(40px, 11.4vw, 172px); letter-spacing: 0.02em; line-height: 0.9;
+  font-kerning: none; font-feature-settings: "kern" 0;
+  color: var(--bg-deep); -webkit-text-stroke: 3px rgba(220, 235, 220, 0.24); paint-order: stroke fill;
+  white-space: nowrap;
   margin: 70px 0 26px; text-align: center;
 }
 .f-bottom { display: flex; justify-content: space-between; gap: 20px; font: 500 11.5px/1 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); flex-wrap: wrap; }
