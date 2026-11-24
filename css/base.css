@@ -137,6 +137,11 @@ img { max-width: 100%; }
 .section-light .k-no { color: var(--light-accent); }
 .section-light .keys li:last-child { background: var(--yellow); border-color: transparent; }
 .section-light .keys li:last-child .k-no { color: #2a1c00; }
+/* news cards: cream on mint is too close, so white cards with a hairline */
+.section-light .news-card { background: #fff; box-shadow: inset 0 0 0 1px var(--light-line); }
+.section-light .news-card:hover { box-shadow: inset 0 0 0 1px var(--light-line), 0 16px 28px rgba(20, 32, 25, 0.12); }
+.section-light .n-meta { color: #c2381f; }
+.section-light .n-more { color: var(--light-accent); }
 
 /* page hero (inner pages) */
 .page-hero { position: relative; padding: 96px 0 56px; overflow: hidden; }
@@ -350,7 +355,7 @@ img { max-width: 100%; }
 .privacy { color: var(--muted); font-size: 13.5px; line-height: 1.65; }
 
 /* ---------- footer ---------- */
-.site-footer { background: var(--bg-deep); border-top: 1px solid var(--line); padding: 80px 0 28px; margin-top: 40px; overflow: hidden; }
+.site-footer { background: var(--bg-deep); border-top: 1px solid var(--line); padding: 80px 0 28px; margin-top: 0; overflow: hidden; }
 .f-top { display: grid; grid-template-columns: 1.3fr 1fr; gap: 60px; }
 .f-sub .h3 { max-width: 18ch; margin-bottom: 22px; }
 .inline-form { display: flex; gap: 10px; max-width: 480px; }
