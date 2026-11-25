@@ -49,11 +49,20 @@
       ]
     },
     {
-      "source": "/(.*)\\.(webp|png|jpg|css|js)",
+      "source": "/(.*)\\.(css|js|html)",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=3600, must-revalidate"
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(webp|png|jpg)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
         }
       ]
     }
