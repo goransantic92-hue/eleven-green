@@ -1,7 +1,8 @@
 /* Eleven Green — home hero burger builder (ported from the TRON build) */
 .hero-builder {
   max-width: 1440px; margin: 0 auto;
-  height: calc(100vh - 72px); min-height: 660px; max-height: 980px;
+  /* fill the first screen below the concept bar + header (--chrome-h is measured by site.js) */
+  height: calc(100vh - var(--chrome-h, 106px)); min-height: 540px; max-height: 980px;
   display: flex; flex-direction: column;
   padding: 6px 32px 16px;
 }
@@ -30,7 +31,7 @@
 @keyframes flash { from { opacity: 0.25; transform: translateX(-6px); } to { opacity: 1; transform: none; } }
 
 /* ---------- stage ---------- */
-.stage { grid-area: stage; position: relative; min-height: 420px; }
+.stage { grid-area: stage; position: relative; min-height: 300px; }
 .halo {
   position: absolute; left: 50%; top: 52%;
   width: min(100%, 92vh, 600px); aspect-ratio: 1; transform: translate(-50%, -50%);
@@ -269,3 +270,29 @@
 }
 .m-acct { margin: -12px 0 22px; font: 400 13px/1.5 var(--f-mono); color: #4a463c; }
 .m-acct a { color: var(--red); font-weight: 500; text-underline-offset: 3px; }
+
+/* ---------- short desktop screens (laptops 720-800px tall): keep the whole hero on one screen ---------- */
+@media (min-width: 861px) and (max-height: 820px) {
+  .hero-builder { padding-bottom: 8px; }
+  .builder { gap: 6px 22px; padding-top: 8px; }
+  .intro { gap: 14px; margin-top: -20px; }
+  .intro h1 { font-size: clamp(40px, 4.2vw, 60px); }
+  .lead { font-size: 14px; }
+  .note { min-height: 0; }
+  .side { gap: 14px; margin-top: -20px; }
+  .receipt { padding-top: 16px; }
+  .r-meta { margin-top: 4px; padding-bottom: 8px; }
+  .r-lines { max-height: 120px; margin: 8px 0 6px; }
+  .r-height { padding: 8px 0; }
+  .r-total { padding-top: 10px; }
+  .r-total strong { font-size: 26px; }
+  .pickup select { padding: 8px 12px; }
+  .presets { margin-bottom: 6px; }
+  .preset-chip { padding: 7px 11px; }
+  .tray { padding: 6px; }
+  .tray-item { padding: 6px 4px 4px; }
+  .thumb { height: 36px; }
+  .thumb img { max-height: 36px; }
+  .is-side .thumb img { height: 36px; }
+  .hint { padding-top: 6px; }
+}

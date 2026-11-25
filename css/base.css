@@ -440,14 +440,15 @@ img { max-width: 100%; }
 
 /* ---------- responsive ---------- */
 @media (max-width: 1180px) {
-  .nav a:not(.btn) { padding: 10px 8px; letter-spacing: 0.06em; }
   .keys { grid-template-columns: repeat(3, 1fr); }
   .news-grid { grid-template-columns: repeat(2, 1fr); }
   .awards { grid-template-columns: repeat(2, 1fr); }
   .award:nth-child(3) { border-left: 0; }
   .award:nth-child(n+3) { border-top: 1px solid var(--line); }
 }
-@media (max-width: 980px) {
+/* header: below 1180px the 7 links + account + "Order now" no longer fit on one line,
+   so the links move into the menu-button dropdown */
+@media (max-width: 1180px) {
   .menu-toggle {
     display: inline-flex; flex-direction: column; justify-content: center; gap: 6px; margin-left: 4px;
     width: 46px; height: 46px; border-radius: 50%; border: 0; cursor: pointer;
@@ -459,13 +460,14 @@ img { max-width: 100%; }
   .acct-link { margin-left: auto; }
   .head-cta { margin-left: 0; }
   .nav {
-    position: fixed; inset: 72px 0 auto 0; margin: 0; flex-direction: column; align-items: stretch; gap: 0;
+    position: absolute; top: 100%; left: 0; right: 0; margin: 0; flex-direction: column; align-items: stretch; gap: 0;
     background: var(--bg-deep); border-bottom: 1px solid var(--line); padding: 10px 16px 22px;
     transform: translateY(-8px); opacity: 0; visibility: hidden; transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
   }
   .nav-open .nav { transform: none; opacity: 1; visibility: visible; }
   .nav a:not(.btn) { font: 800 26px/1 var(--f-display); letter-spacing: -0.02em; text-transform: none; padding: 14px 6px; border-radius: 10px; color: var(--text); }
-
+}
+@media (max-width: 980px) {
   .sig-grid, .branches, .values, .story, .mh-grid { grid-template-columns: 1fr 1fr; }
   .acct-grid, .acct-dash { grid-template-columns: 1fr; }
   .acct-side { position: static; }

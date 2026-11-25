@@ -329,6 +329,14 @@ function wireHomeMenu() {
 }
 
 renderChrome();
+// height of everything above the page content (concept bar + header), so full-screen sections fit exactly
+function measureChrome() {
+  const h = document.getElementById('site-header'), bar = document.querySelector('.concept-bar');
+  // offsetHeight, not position: the header is sticky, so its position changes while scrolling
+  if (h) document.documentElement.style.setProperty('--chrome-h', `${(bar ? bar.offsetHeight : 0) + h.offsetHeight}px`);
+}
+measureChrome();
+window.addEventListener('resize', measureChrome);
 renderAll();
 wireHomeMenu();
 // keep account-aware blocks (home greeting) in step with sign-in/out and new orders
