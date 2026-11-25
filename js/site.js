@@ -28,11 +28,24 @@ function renderChrome() {
           ${NAV.map(([href, label]) => `<a href="${href}"${href === here ? ' aria-current="page"' : ''}>${label}</a>`).join('')}
           <a class="btn btn-red nav-cta" href="${EG.orderUrl}" target="_blank" rel="noopener">Order now</a>
         </nav>
+        <a class="acct-link" id="acctLink" href="account.html"${here === 'account.html' ? ' aria-current="page"' : ''}>
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4.8 19.4c1.4-3.2 4-4.8 7.2-4.8s5.8 1.6 7.2 4.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="acct-label" id="acctLabel">Sign in</span>
+        </a>
         <a class="btn btn-red head-cta" href="${EG.orderUrl}" target="_blank" rel="noopener">Order now</a>
         <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
           <span></span><span></span>
         </button>
       </div>`;
+    // account link: "Sign in" or "Hi, Name" (demo accounts, js/account.js)
+    const paintAccount = (u) => {
+      const label = document.getElementById('acctLabel'), link = document.getElementById('acctLink');
+      label.textContent = u ? `Hi, ${u.first}` : 'Sign in';
+      link.setAttribute('aria-label', u ? `Your account, signed in as ${u.first}` : 'Sign in or create an account');
+      link.classList.toggle('is-in', !!u);
+    };
+    if (window.EG_ACCOUNT) { paintAccount(EG_ACCOUNT.user()); EG_ACCOUNT.onChange(paintAccount); }
+
     const t = document.getElementById('menuToggle');
     t.addEventListener('click', () => {
       const open = document.body.classList.toggle('nav-open');
@@ -129,6 +142,30 @@ function branchCard(b, full) {
 
 /* ---------- renderers (any page can use them via data-render) ---------- */
 const RENDER = {
+  // home: "Hello Stranger!" like the original, or a personal greeting with the last order
+  hello() {
+    const u = window.EG_ACCOUNT && EG_ACCOUNT.user();
+    if (!u) {
+      return `
+        <div class="hello">
+          <div><p class="hello-t">Hello <em>Stranger!</em></p>
+          <p class="hello-d">Sign in to keep your orders and your favourite branch, for a personalised Elevener experience.</p></div>
+          <div class="hello-a"><a class="btn btn-yellow" href="account.html">Sign in</a></div>
+        </div>`;
+    }
+    const last = u.orders[0];
+    return `
+      <div class="hello is-in">
+        <div><p class="hello-t">Hello, <em>${esc(u.first)}!</em></p>
+        <p class="hello-d">${last
+          ? `Last time: <strong>${esc(last.name)}</strong> · ${aed(last.total)}. Fancy it again?`
+          : 'Build a burger above and crown it. It will be saved to your account.'}</p></div>
+        <div class="hello-a">
+          ${last ? `<a class="btn btn-yellow" href="#again=${encodeURIComponent(last.id)}" data-again="${esc(last.id)}">Order again</a>` : ''}
+          <a class="btn btn-ghost" href="account.html">Your account</a>
+        </div>
+      </div>`;
+  },
   signature() {
     const items = MENU.find((c) => c.id === 'specials').items;
     return items.map((it, i) => `
@@ -294,6 +331,10 @@ function wireHomeMenu() {
 renderChrome();
 renderAll();
 wireHomeMenu();
+// keep account-aware blocks (home greeting) in step with sign-in/out and new orders
+if (window.EG_ACCOUNT) {
+  EG_ACCOUNT.onChange(() => document.querySelectorAll('[data-render="hello"]').forEach((el) => { el.innerHTML = RENDER.hello(el); }));
+}
 wireForms();
 wireMenuSpy();
 wireReveal();

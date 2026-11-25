@@ -266,3 +266,5 @@
   .presets { margin: 0 -16px 8px; padding: 2px 16px 4px; }
   .pickup { margin-top: 0; }
 }
+.m-acct { margin: -12px 0 22px; font: 400 13px/1.5 var(--f-mono); color: #4a463c; }
+.m-acct a { color: var(--red); font-weight: 500; text-underline-offset: 3px; }

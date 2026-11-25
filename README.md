@@ -14,6 +14,11 @@ TRON is kept in `tron/` for reference but is **not deployed** (`.vercelignore`, 
 
 No build step: plain HTML, CSS and JavaScript.
 
+**Customer accounts are a demo** (`account.html`, `js/account.js`): sign-up, sign-in, profile, favourite
+pick-up branch and order history from the burger builder, with "Order again". Everything is stored in the
+visitor's own browser (`localStorage`), there are no passwords, and nothing is sent to a server. Real accounts
+would need a backend such as Supabase.
+
 ## Run locally
 
 ```bash

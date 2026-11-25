@@ -398,7 +398,49 @@ function crown() {
   el.doneText.textContent = br.dineInOnly
     ? `${what}, ${cm.toFixed(1)} cm tall, ${fmt(total())}. ${br.name} (${br.city}) is dine-in only, so show this at the counter.`
     : `${what}, ${cm.toFixed(1)} cm tall, ${fmt(total())}. Ready for pick-up at ${br.name}, ${br.city} in about ${READY_MIN} minutes.`;
+
+  // demo account: keep the order (js/account.js), or invite the guest to sign up
+  const acctLine = $('doneAcct');
+  const saved = window.EG_ACCOUNT && EG_ACCOUNT.user() ? EG_ACCOUNT.recordOrder({
+    no: pad3(state.order),
+    name: state.preset ? state.preset.name : 'Your own burger',
+    presetId: state.preset ? state.preset.id : null,
+    layers: state.layers.map((L) => L.key),
+    lines: [...counts()].map(([k, n]) => `${ING[k].name}${n > 1 ? ` ×${n}` : ''}`),
+    sides: [...state.sides],
+    sideNames: [...state.sides].map((s) => SIDES[s].name),
+    branch: br.id,
+    cm: cm.toFixed(1),
+    total: Math.round(total()),
+  }) : null;
+  if (acctLine) {
+    acctLine.innerHTML = saved
+      ? `Saved to <a href="account.html">your orders</a>.`
+      : `<a href="account.html">Create a demo account</a> to keep your order history.`;
+  }
   setTimeout(() => el.done.showModal(), 650);
+}
+
+// rebuild a saved order (account page → index.html#again=<id>, or the home greeting)
+function rebuildOrder(id) {
+  const o = window.EG_ACCOUNT && EG_ACCOUNT.findOrder(id);
+  if (!o) return false;
+  if (el.done.open) el.done.close();
+  clearAll();
+  state.preset = PRESETS.find((p) => p.id === o.presetId) || null;
+  o.layers.filter((k) => ING[k]).forEach((k) => addLayer(k, false));
+  (o.sides || []).filter((s) => SIDES[s]).forEach((s) => { state.sides.add(s); sideNodes[s].classList.add('on'); });
+  if (pickup && BRANCHES.some((b) => b.id === o.branch)) pickup.value = state.branch = o.branch;
+  setNote(`ORDER AGAIN · N° ${o.no}`, `${o.name} as you had it. Change anything, then crown it.`);
+  refresh();
+  return true;
+}
+function handleAgainHash() {
+  const m = location.hash.match(/^#again=(.+)$/);
+  if (!m) return;
+  const ok = rebuildOrder(decodeURIComponent(m[1]));
+  history.replaceState(null, '', location.pathname + location.search);   // don't rebuild again on reload
+  if (ok) document.querySelector('.hero-builder').scrollIntoView({ behavior: 'smooth' });
 }
 
 /* ------------------------------------------------------------------
@@ -428,7 +470,8 @@ if (pickup) {
     return `<option value="${b.id}">${b.name}, ${b.city} · ${b.dineInOnly ? 'dine-in only' : s.open ? 'open' : 'closed'}</option>`;
   }).join('');
   const firstOpen = BRANCHES.find((b) => !b.dineInOnly && branchStatus(b).open) || BRANCHES[0];
-  pickup.value = state.branch = firstOpen.id;
+  const fav = window.EG_ACCOUNT && EG_ACCOUNT.user() && EG_ACCOUNT.user().favBranch;   // signed-in favourite first
+  pickup.value = state.branch = (fav && BRANCHES.some((b) => b.id === fav)) ? fav : firstOpen.id;
   pickup.addEventListener('change', () => { state.branch = pickup.value; });
 }
 
@@ -457,3 +500,5 @@ window.addEventListener('resize', () => { clearTimeout(resizeT); resizeT = setTi
 
 DEFAULT_LAYERS.forEach((k) => addLayer(k, false));
 refresh();
+handleAgainHash();
+window.addEventListener('hashchange', handleAgainHash);
