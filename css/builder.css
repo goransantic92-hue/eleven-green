@@ -236,10 +236,9 @@
 
 /* ---------- Eleven Green additions: menu-burger presets + pick-up branch ---------- */
 .presets {
-  display: flex; align-items: center; gap: 6px; margin-bottom: 8px;
-  overflow-x: auto; scrollbar-width: none; padding: 2px 2px 4px;
+  /* wrap onto as many lines as needed: every menu burger stays visible (no hidden sideways scroll) */
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 10px; padding: 2px;
 }
-.presets::-webkit-scrollbar { display: none; }
 .presets-label { flex: none; font: 500 11px/1 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-right: 4px; }
 .preset-chip {
   flex: none; cursor: pointer; border: 0; border-radius: 999px; padding: 8px 12px;
@@ -263,7 +262,9 @@
 .pickup option { color: #142019; }
 .is-crowned .pickup select { opacity: 0.6; pointer-events: none; }
 @media (max-width: 860px) {
-  .presets { margin: 0 -16px 8px; padding: 2px 16px 4px; }
+  .presets { gap: 6px 5px; }
+  .presets-label { flex-basis: 100%; margin: 0 0 2px; }
+  .preset-chip { padding: 8px 10px; font-size: 12px; }
   .pickup { margin-top: 0; }
 }
 .m-acct { margin: -12px 0 22px; font: 400 13px/1.5 var(--f-mono); color: #4a463c; }
