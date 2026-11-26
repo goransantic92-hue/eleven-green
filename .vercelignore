@@ -1,3 +1,5 @@
 # TRON is kept in the repo but is not published
 tron/
-README.md
+# docs and tooling are for people and agents, not for the website
+*.md
+tools/
